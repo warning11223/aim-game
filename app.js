@@ -5,6 +5,8 @@ let time = 20;
 const timeEl = document.querySelector('#time');
 const board = document.querySelector('.board');
 let score = 0;
+const colors = ['#48d010', '#dcd109', '#0ad970', '#05ffe4', '#0043ad', '#ad0096', '#974c0b'];
+
 
 
 
@@ -26,6 +28,7 @@ board.addEventListener('click', event => {
         score++;
         event.target.remove()
         createRandomCircle()
+
     }
 })
 
@@ -64,6 +67,7 @@ function createRandomCircle() {
     circle.classList.add('circle');
 
 
+
     const size = getRandomNumber(10, 60);
     const {width, height} = board.getBoundingClientRect();
 
@@ -75,20 +79,26 @@ function createRandomCircle() {
     circle.style.height = `${size}px`;
     circle.style.top = `${y}px`
     circle.style.left = `${x}px`
-
+    setColor(circle)
     board.append(circle)
 
 
 }
 
-
-
-
 function getRandomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
 }
 
+function setColor(element) {
+    const color = getRandomColor();
+    element.style.background = color;
 
+}
+
+function getRandomColor() {
+    const index =Math.floor(Math.random() * colors.length);
+    return colors[index]
+}
 
 
 
